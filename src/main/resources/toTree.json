@@ -1,0 +1,16 @@
+
+convertToTreeData(data, pid) {
+  const result = []
+  let temp = []
+  for (let i = 0; i < data.length; i++) {
+  if (data[i].parentId === pid) {
+  const obj = { 'label': data[i].name, 'id': data[i].id }
+  temp = this.convertToTreeData(data, data[i].id)
+  if (temp.length > 0) {
+  obj.children = temp
+  }
+  result.push(obj)
+  }
+  }
+  return result
+}
